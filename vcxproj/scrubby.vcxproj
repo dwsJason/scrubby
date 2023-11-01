@@ -130,7 +130,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\libs\libserialport\x64\Debug;..\libs\SDL2_image-2.0.5\lib\x64;..\libs\SDL2-2.0.10\lib\x64;..\libs\udt4\win\x64\Debug;..\libs\box2d\build\src\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libserialport.lib;opengl32.lib;SDL2_image.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libserialport.lib;opengl32.lib;SDL2_image.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -203,7 +203,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\libs\libserialport\x64\Release;..\libs\SDL2_image-2.0.5\lib\x64;..\libs\SDL2-2.0.10\lib\x64;..\libs\udt4\win\x64\Release;..\libs\box2d\build\src\RelWithDebInfo;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libserialport.lib;opengl32.lib;SDL2_image.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libserialport.lib;opengl32.lib;SDL2_image.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -234,6 +234,7 @@
     <ClCompile Include="..\source\common\cursor.cpp" />
     <ClCompile Include="..\source\common\limage.cpp" />
     <ClCompile Include="..\source\common\log.cpp" />
+    <ClCompile Include="..\source\foenix.cpp" />
     <ClCompile Include="..\source\icon.cpp" />
     <ClCompile Include="..\source\main.cpp" />
     <ClCompile Include="..\source\sdl_helpers.cpp" />
@@ -359,6 +360,7 @@
     <ClInclude Include="..\source\common\limage.h" />
     <ClInclude Include="..\source\common\log.h" />
     <ClInclude Include="..\source\common\memstream.h" />
+    <ClInclude Include="..\source\foenix.h" />
     <ClInclude Include="..\source\memory_editor.h" />
     <ClInclude Include="..\source\scrubby.h" />
     <ClInclude Include="..\source\sdl_helpers.h" />

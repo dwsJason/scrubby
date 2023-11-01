@@ -268,6 +268,7 @@ int main(int, char**)
 		DockSpaceUI();
 
 		static MemoryEditor mem_edit;
+//		mem_edit.ReadOnly = true;
 		mem_edit.DrawWindow("Memory Editor", data, DATA_SIZE);
 
 		#if 0

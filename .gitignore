@@ -4,3 +4,9 @@
 vcxproj/.vs/
 vcxproj/Debug/
 vcxproj/Release/
+*.log
+*.recipe
+*.idb
+*.obj
+*.tlog
+*.vtg
