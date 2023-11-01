@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\source\main.cpp" />
+    <ClCompile Include="..\libs\imgui\imgui.cpp">
+      <Filter>libs\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\imgui_demo.cpp">
+      <Filter>libs\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\imgui_draw.cpp">
+      <Filter>libs\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\imgui_widgets.cpp">
+      <Filter>libs\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\common\log.cpp">
+      <Filter>source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\icon.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\ImGuiFileDialog\ImGuiFileDialog\ImGuiFileDialog.cpp">
+      <Filter>libs\ImGuiFileDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\common\limage.cpp">
+      <Filter>source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\common\cursor.cpp">
+      <Filter>source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\toolbar.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\sdl_helpers.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\theme.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\backends\imgui_impl_opengl3.cpp">
+      <Filter>libs\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\backends\imgui_impl_sdl2.cpp">
+      <Filter>libs\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\imgui_tables.cpp">
+      <Filter>libs\imgui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\common\concurrent_queue.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\examples\libs\gl3w\GL\glcorearb.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\imconfig.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\imgui.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\imgui_internal.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\sse\boolinvec.hpp">
+      <Filter>libs\vectormath\sse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\sse\floatinvec.hpp">
+      <Filter>libs\vectormath\sse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\sse\internal.hpp">
+      <Filter>libs\vectormath\sse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\sse\matrix.hpp">
+      <Filter>libs\vectormath\sse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\sse\quaternion.hpp">
+      <Filter>libs\vectormath\sse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\sse\vecidx.hpp">
+      <Filter>libs\vectormath\sse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\sse\vector.hpp">
+      <Filter>libs\vectormath\sse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\sse\vectormath.hpp">
+      <Filter>libs\vectormath\sse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\scalar\matrix.hpp">
+      <Filter>libs\vectormath\scalar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\scalar\quaternion.hpp">
+      <Filter>libs\vectormath\scalar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\scalar\vector.hpp">
+      <Filter>libs\vectormath\scalar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\scalar\vectormath.hpp">
+      <Filter>libs\vectormath\scalar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\common.hpp">
+      <Filter>libs\vectormath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\vec2d.hpp">
+      <Filter>libs\vectormath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\vectormath\vectormath.hpp">
+      <Filter>libs\vectormath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\common\log.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\ImGuiFileDialog\ImGuiFileDialog\ImGuiFileDialog.h">
+      <Filter>libs\ImGuiFileDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\ImGuiFileDialog\ImGuiFileDialog\ImGuiFileDialogConfig.h">
+      <Filter>libs\ImGuiFileDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\common\limage.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\common\cursor.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\toolbar.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2_image-2.0.5\include\SDL_image.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\begin_code.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\close_code.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_assert.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_atomic.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_audio.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_bits.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_blendmode.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_clipboard.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_config.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_config_android.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_config_iphoneos.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_config_macosx.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_config_minimal.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_config_pandora.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_config_psp.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_config_windows.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_config_winrt.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_config_wiz.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_copying.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_cpuinfo.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_egl.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_endian.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_error.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_events.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_filesystem.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_gamecontroller.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_gesture.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_haptic.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_hints.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_joystick.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_keyboard.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_keycode.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_loadso.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_log.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_main.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_messagebox.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_mouse.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_mutex.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_name.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_opengl.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_opengl_glext.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_opengles.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_opengles2.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_opengles2_gl2.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_opengles2_gl2ext.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_opengles2_gl2platform.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_opengles2_khrplatform.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_pixels.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_platform.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_power.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_quit.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_rect.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_render.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_revision.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_rwops.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_scancode.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_sensor.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_shape.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_stdinc.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_surface.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_system.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_syswm.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test_assert.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test_common.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test_compare.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test_crc32.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test_font.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test_fuzzer.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test_harness.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test_images.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test_log.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test_md5.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test_memory.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_test_random.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_thread.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_timer.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_touch.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_types.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_version.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_video.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\SDL2-2.0.10\include\SDL_vulkan.h">
+      <Filter>libs\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\sdl_helpers.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\common\memstream.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\common\bctypes.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\backends\imgui_impl_opengl3.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\backends\imgui_impl_opengl3_loader.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\backends\imgui_impl_sdl2.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\imstb_rectpack.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\imstb_textedit.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\imstb_truetype.h">
+      <Filter>libs\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\scrubby.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="libs">
+      <UniqueIdentifier>{b8fb5019-a341-4eed-b09d-4fba2fcc6b42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{8650d5e4-3ccb-4d51-a1c2-7694c3fa9d17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\imgui">
+      <UniqueIdentifier>{52459441-6121-44c6-8742-7f27c3378c24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\vectormath">
+      <UniqueIdentifier>{c5078cd8-2e4c-4151-8614-f85ed7ee6063}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\common">
+      <UniqueIdentifier>{e572bd88-9591-4a93-803d-7737f6a16909}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\vectormath\scalar">
+      <UniqueIdentifier>{4737bf0c-3daf-4014-b048-86f4a58c736b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\vectormath\sse">
+      <UniqueIdentifier>{40e43027-1c8b-4544-baf9-bb220091f423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\ImGuiFileDialog">
+      <UniqueIdentifier>{9f3a7a34-aa5b-42bf-be51-ccfb1f05e26a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{f9cd2e21-876b-4474-b763-de17bc6ec961}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\SDL2">
+      <UniqueIdentifier>{06d191a2-7e04-4ed2-a834-1b9fa2fdb1b3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\libs\imgui\misc\natvis\imgui.natvis">
+      <Filter>libs\imgui</Filter>
+    </None>
+    <None Include="..\libs\SDL2-2.0.10\include\SDL_config.h.cmake">
+      <Filter>libs\SDL2</Filter>
+    </None>
+    <None Include="..\libs\SDL2-2.0.10\include\SDL_config.h.in">
+      <Filter>libs\SDL2</Filter>
+    </None>
+    <None Include="..\libs\SDL2-2.0.10\include\SDL_config_macosx.h.orig">
+      <Filter>libs\SDL2</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\data\icon32.ico">
+      <Filter>resources</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
