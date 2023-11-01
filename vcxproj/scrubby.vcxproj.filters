@@ -410,6 +410,9 @@
       <Filter>libs\imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\source\scrubby.h" />
+    <ClInclude Include="..\libs\libserialport\libserialport.h">
+      <Filter>libs\libserialport</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="libs">
@@ -441,6 +444,9 @@
     </Filter>
     <Filter Include="libs\SDL2">
       <UniqueIdentifier>{06d191a2-7e04-4ed2-a834-1b9fa2fdb1b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\libserialport">
+      <UniqueIdentifier>{4bfadd42-df63-4a3e-864a-813906ab1fd2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
