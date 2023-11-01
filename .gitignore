@@ -1,0 +1,6 @@
+*.vpj
+*.vpw
+*.vpwhist
+vcxproj/.vs/
+vcxproj/Debug/
+vcxproj/Release/
