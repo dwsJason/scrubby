@@ -413,6 +413,9 @@
     <ClInclude Include="..\libs\libserialport\libserialport.h">
       <Filter>libs\libserialport</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\memory_editor.h">
+      <Filter>source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="libs">

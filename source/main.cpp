@@ -18,6 +18,8 @@
 
 #include "scrubby.h"
 
+#include "memory_editor.h"
+
 // Style
 void Gold_SetupImGuiStyle();
 void PhotoShop_SetupImGuiStyle();
@@ -228,42 +230,16 @@ int main(int, char**)
 
 	LOG("Scrubby Compiled %s %s\n", __DATE__, __TIME__);
 
-	// Set File Type Filter Colors, because that won't look weird
-//	AddFileFilters();
-
-	#if 0
-	{
-		// Scan preset palette directory
-		LOG("Load Preset Palettes\n");
-
-		std::string vPath = ".\\data\\palettes";
-		struct dirent **files = nullptr;
-		int fileCount = scandir(vPath.c_str(), &files, nullptr, alphaSort);
-
-		for (int idx = 0; idx < fileCount; ++idx)
-		{
-			struct dirent *ent = files[idx];
-
-			if (DT_REG == ent->d_type)
-			{
-				std::string filename = ent->d_name;
-
-				if (endsWith(filename, ".pal"))
-				{
-					LOG("%s\n", filename.c_str());
-					PaletteDocument::GDocuments.push_back(new PaletteDocument(filename, vPath+"\\"+filename ));
-				}
-			}
-		}
-	}
-	#endif
-
 	// Get that toolbar created
 
 	pToolbar = new Toolbar();
 
     // Main loop
     bAppDone = false;
+
+	const int DATA_SIZE = 512 * 1024;
+	static char data[ DATA_SIZE ];
+
     while (!bAppDone)
     {
         // Poll and handle events (inputs, window resize, etc.)
@@ -290,6 +266,9 @@ int main(int, char**)
 		ToolBarUI();
 		// Put everything in a DockSpace, because it's just cool
 		DockSpaceUI();
+
+		static MemoryEditor mem_edit;
+		mem_edit.DrawWindow("Memory Editor", data, DATA_SIZE);
 
 		#if 0
 		// Render the imageDocuments

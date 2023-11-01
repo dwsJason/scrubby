@@ -359,6 +359,7 @@
     <ClInclude Include="..\source\common\limage.h" />
     <ClInclude Include="..\source\common\log.h" />
     <ClInclude Include="..\source\common\memstream.h" />
+    <ClInclude Include="..\source\memory_editor.h" />
     <ClInclude Include="..\source\scrubby.h" />
     <ClInclude Include="..\source\sdl_helpers.h" />
     <ClInclude Include="..\source\toolbar.h" />
