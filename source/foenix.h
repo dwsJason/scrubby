@@ -8,6 +8,7 @@
 #include "libserialport.h"
 #include "bctypes.h"
 #include <string>
+#include <vector>
 
 
 //DELAY_ERASE_SECTOR = 1          # Number of seconds to wait after issueing an ERASE_SECTOR command
@@ -57,8 +58,7 @@ public:
 	//-------------------------------------------------------------------------
 	void OpenSerialPort(const char* portName);
 
-	u16 Send(ECommand Command);
-
+	u16 Send(ECommand Command, u32 TargetAddress = 0, std::vector<u8>* pPayLoad = nullptr);
 
 private:
 	std::string PortName;

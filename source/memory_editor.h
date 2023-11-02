@@ -93,6 +93,9 @@ struct MemoryEditor
     bool            (*HighlightFn)(const ImU8* data, size_t off);//= 0      // optional handler to return Highlight property (to support non-contiguous highlighting).
 
     // [Internal State]
+	size_t	LowAddress;
+	size_t  HighAddress;
+
     bool            ContentsWidthChanged;
     size_t          DataPreviewAddr;
     size_t          DataEditingAddr;
@@ -134,6 +137,12 @@ struct MemoryEditor
         HighlightMin = HighlightMax = (size_t)-1;
         PreviewEndianess = 0;
         PreviewDataType = ImGuiDataType_S32;
+
+		//++dwsJason
+		LowAddress = 0;
+		HighAddress = 1024;
+		//--dwsJason
+
     }
 
     void GotoAddrAndHighlight(size_t addr_min, size_t addr_max)
@@ -268,10 +277,25 @@ struct MemoryEditor
         const char* format_byte = OptUpperCaseHex ? "%02X" : "%02x";
         const char* format_byte_space = OptUpperCaseHex ? "%02X " : "%02x ";
 
+		LowAddress = 0x7FFFFFFF;
+		HighAddress = 0;
+
         while (clipper.Step())
             for (int line_i = clipper.DisplayStart; line_i < clipper.DisplayEnd; line_i++) // display only visible lines
             {
                 size_t addr = (size_t)(line_i * Cols);
+
+				//++dwsJason
+				if (addr < LowAddress)
+				{
+					LowAddress = addr;
+				}
+				if (addr > HighAddress)
+				{
+					HighAddress = addr + Cols - 1;
+				}
+				//--dwsJason
+
                 ImGui::Text(format_address, s.AddrDigitsCount, base_display_addr + addr);
 
                 // Draw Hexadecimal

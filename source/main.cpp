@@ -20,6 +20,8 @@
 
 #include "memory_editor.h"
 
+#include "foenix.h"
+
 // Style
 void Gold_SetupImGuiStyle();
 void PhotoShop_SetupImGuiStyle();
@@ -67,7 +69,6 @@ static int alphaSort(const struct dirent **a, const struct dirent **b)
 	return strcoll((*a)->d_name, (*b)->d_name);
 }
 //------------------------------------------------------------------------------
-//std::vector<ImageDocument*>   imageDocuments;
 
 Toolbar* pToolbar = nullptr; // need to create after stuff intialize
 
@@ -75,30 +76,6 @@ bool bAppDone = false; // Set true to quit App
 
 	bool show_log_window = true;
 	bool show_palette_window = true;
-
-//------------------------------------------------------------------------------
-
-#if 0
-static void AddFileFilters()
-{
-	// upper case list
-	char* extensions[] =
-	{
-		".PNG",".TIF",".TGA",".GIF",".FAN",".FLC",".FLI",".JPG",".JFIF",".LBM",
-		".BMP",".WEBP",".ANM",".PAL",".C1",".C2",".256",
-		"#C10000","#C20000",".GSLA"
-	};
-
-	for (int idx = 0; idx < (sizeof(extensions)/sizeof(char*)); ++idx )
-	{
-		ImGuiFileDialog::Instance()->SetFilterColor(extensions[ idx ], ImVec4(0,1,0,1));
-
-		// Add them all, as lowercase too
-		std::string lowercase = toLower( extensions[ idx ] );
-		ImGuiFileDialog::Instance()->SetFilterColor(lowercase.c_str(), ImVec4(0,1,0,1));
-	}
-}
-#endif
 
 //------------------------------------------------------------------------------
 
@@ -230,6 +207,10 @@ int main(int, char**)
 
 	LOG("Scrubby Compiled %s %s\n", __DATE__, __TIME__);
 
+	static FoenixDebugPort Foenix;
+
+	Foenix.OpenSerialPort("COM3");
+
 	// Get that toolbar created
 
 	pToolbar = new Toolbar();
@@ -268,40 +249,54 @@ int main(int, char**)
 		DockSpaceUI();
 
 		static MemoryEditor mem_edit;
-//		mem_edit.ReadOnly = true;
+		#if 0
+		static size_t DataPreviewAddr = 0;
+		static size_t DataEditingAddr = 0;
+
+		// What is the window start address, and size
+		if (DataPreviewAddr != mem_edit.DataPreviewAddr)
+		{
+			DataPreviewAddr = mem_edit.DataPreviewAddr;
+			LOG("DataPreviewAddr = $%llx\n", DataPreviewAddr);
+		}
+
+		if (DataEditingAddr != mem_edit.DataEditingAddr)
+		{
+			DataEditingAddr = mem_edit.DataEditingAddr;
+			LOG("DataEditingAddr = $%llx\n", DataEditingAddr);
+		}
+		#endif
+
+		static size_t LowAddress = 0;
+		static size_t HighAddress = 0;
+		static int rate = 60;
+
+		if ((LowAddress != mem_edit.LowAddress)||
+			(HighAddress != mem_edit.HighAddress))
+		{
+			LowAddress = mem_edit.LowAddress;
+			HighAddress = mem_edit.HighAddress;
+			LOG("%lx --> %lx\n", LowAddress, HighAddress);
+			rate = 0;
+		}
+
+
+		rate--;
+
+		if (rate <= 0)
+		{
+			rate = 60;
+			// pull data from the Jr
+			std::vector<u8> payload(HighAddress-LowAddress+1);
+			Foenix.Send(CMD_CPU_STOP);
+			Foenix.Send(CMD_READ_MEM, LowAddress, &payload);
+			Foenix.Send(CMD_CPU_RESUME);
+			memcpy(&data[LowAddress], payload.data(), payload.size());
+		}
+
+
 		mem_edit.DrawWindow("Memory Editor", data, DATA_SIZE);
 
-		#if 0
-		// Render the imageDocuments
-
-		for (int idx = 0; idx < imageDocuments.size(); ++idx)
-		{
-			imageDocuments[ idx ]->Render();
-
-			// Delete the document if the user closes it
-			if (imageDocuments[ idx ]->IsClosed())
-			{
-				delete imageDocuments[ idx ];
-				imageDocuments.erase(imageDocuments.begin() + idx);
-				idx--; // Compensate index for the window being removed
-			}
-		}
-
-		#endif
-
-		#if 0
-		// Render the Palette Window
-
-		if (show_palette_window)
-		{
-			ImGui::Begin("Palettes", &show_palette_window);
-
-			PaletteDocument::GRender();
-
-			ImGui::End();
-		}
-
-		#endif
 
 		if (show_log_window)
 		{
