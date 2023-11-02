@@ -47,6 +47,9 @@
     <ClCompile Include="..\libs\imgui\imgui_tables.cpp">
       <Filter>libs\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\foenix.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\common\concurrent_queue.h">
@@ -126,9 +129,6 @@
     </ClInclude>
     <ClInclude Include="..\source\toolbar.h">
       <Filter>source</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>resources</Filter>
     </ClInclude>
     <ClInclude Include="..\libs\SDL2_image-2.0.5\include\SDL_image.h">
       <Filter>libs\SDL2</Filter>
@@ -409,11 +409,19 @@
     <ClInclude Include="..\libs\imgui\imstb_truetype.h">
       <Filter>libs\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\scrubby.h" />
     <ClInclude Include="..\libs\libserialport\libserialport.h">
       <Filter>libs\libserialport</Filter>
     </ClInclude>
     <ClInclude Include="..\source\memory_editor.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\foenix.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\scrubby.h">
       <Filter>source</Filter>
     </ClInclude>
   </ItemGroup>
@@ -470,5 +478,10 @@
     <Image Include="..\data\icon32.ico">
       <Filter>resources</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="scrubby.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
