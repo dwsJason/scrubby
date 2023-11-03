@@ -10,14 +10,9 @@
 
 enum ToolBarMode
 {
-	ePanZoom,
-	eEyeDropper,
-	eResizeImage,
-
-	eRotate90Right,
-	eRotate90Left,
-	eMirrorHorizontal,
-	eMirrorVertical,
+	eConnect,
+	eDisconnect,
+	eReset,
 
 	eToolBarMode_COUNT
 };

@@ -16,8 +16,8 @@ Toolbar* Toolbar::GToolbar = nullptr;
 
 Toolbar::Toolbar()
 	: m_GLImage(0)
-	, m_currentMode(ePanZoom)
-	, m_previousMode(ePanZoom)
+	, m_currentMode(eConnect)
+	, m_previousMode(eDisconnect)
 {
 	// So I think this should not be in a file, it should be linked in, maybe
 	// an XPM image like the eye dropper?
@@ -82,24 +82,16 @@ static const	ImVec2 buttonSize = ImVec2(20*2,12*2);
 
 static const char* helpStrings[] = 
 {
-	"Pan and Zoom",
-	"Eye Dropper",
-	"Resize Image",
-	"Rotate Image\n90 Right/CW",
-	"Rotate Image\n90 Left/CCW",
-	"Mirror Image\nHorizontal",
-	"Mirror Image\nVertical"
+	"Connect to Target",
+	"Disconnect",
+	"Reset Target",
 };
 
 static const int buttonXY[][2] =
 {
-	{0,6},  // hand
-	{0,8},  // eye dropper
-	{6,9},  // resize
-	{6,10}, // rotate right
-	{4,8},  // rotate left
-	{4,3},  // h-flip
-	{6,11}, // v-flip
+	{0,17},  // connect
+	{0,14},  // disconnect
+	{4,8},   // reset
 
 };
 
