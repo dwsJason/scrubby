@@ -12,7 +12,7 @@ enum ToolBarMode
 {
 	eAppMenu,
 	eConnect,
-	eDisconnect = eConnect,
+	eDisconnect, // = eConnect,
 	eLoadExecutable,
 	eResetTarget,
 	eRefreshRate,

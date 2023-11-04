@@ -20,6 +20,8 @@ class TargetManager
 {
 public:
 
+	void Render();
+
 };
 
 
