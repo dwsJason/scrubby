@@ -7,12 +7,13 @@
 #include "imgui_impl_sdl2.h"
 #include "imgui_impl_opengl3.h"
 #include <stdio.h>
+#include <vector>
 #include <SDL.h>
 #include <SDL_image.h>
 #include "log.h"
 #include "ImGuiFileDialog.h"
-//#include "imagedoc.h"
-//#include "paldoc.h"
+#include "apptool.h"
+//#include "targetdoc.h"
 #include "dirent.h"
 #include "toolbar.h"
 
@@ -71,12 +72,14 @@ static int alphaSort(const struct dirent **a, const struct dirent **b)
 //------------------------------------------------------------------------------
 // Global Application State
 
+std::vector<ApplicationTool*> appTools;
+
 Toolbar* pToolbar = nullptr; // need to create after stuff intialize
 
 bool bAppDone = false; // Set true to quit App
 
 	bool show_log_window = true;
-	bool show_target_window = true;
+	bool show_targets_window = true;
 	bool is_gold_theme = true;
 	bool is_photoshop_theme = false;
 
@@ -251,6 +254,31 @@ int main(int, char**)
 		// Put everything in a DockSpace, because it's just cool
 		DockSpaceUI();
 
+		// Render Application Tool Windows
+		for (int idx = 0; idx < appTools.size(); ++idx)
+		{
+			appTools[ idx ]->Render();
+
+			// Delete the document if the user closes it
+			if (appTools[ idx ]->IsClosed())
+			{
+				delete appTools[ idx ];
+				appTools.erase(appTools.begin() + idx);
+				idx--; // Compensate index for the window being removed
+			}
+		}
+
+		// Render the Targets Window
+		if (show_targets_window)
+		{
+			ImGui::Begin("Targets", &show_targets_window);
+			//PaletteDocument::GRender();
+
+			ImGui::End();
+
+		}
+
+		#if 0 //$$TODO, move the Memory Editor over into an Application Tool
 		static MemoryEditor mem_edit;
 		#if 0
 		static size_t DataPreviewAddr = 0;
@@ -299,6 +327,7 @@ int main(int, char**)
 
 
 		mem_edit.DrawWindow("Memory Editor", data, DATA_SIZE);
+		#endif
 
 
 		if (show_log_window)
@@ -534,9 +563,9 @@ void MainMenuBarUI()
 			ImGui::Separator();
 			ImGui::Separator();
 
-			if (ImGui::MenuItem("Targets", nullptr, show_target_window))
+			if (ImGui::MenuItem("Targets", nullptr, show_targets_window))
 			{
-				show_target_window = !show_target_window;
+				show_targets_window = !show_targets_window;
 			}
 
 			if (ImGui::MenuItem("Log", nullptr, show_log_window))

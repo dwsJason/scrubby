@@ -356,6 +356,7 @@
     <ClInclude Include="..\libs\vectormath\sse\vectormath.hpp" />
     <ClInclude Include="..\libs\vectormath\vec2d.hpp" />
     <ClInclude Include="..\libs\vectormath\vectormath.hpp" />
+    <ClInclude Include="..\source\apptool.h" />
     <ClInclude Include="..\source\common\bctypes.h" />
     <ClInclude Include="..\source\common\concurrent_queue.h" />
     <ClInclude Include="..\source\common\cursor.h" />
