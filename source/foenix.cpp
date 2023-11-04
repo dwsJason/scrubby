@@ -73,7 +73,7 @@ u16 FoenixDebugPort::Send(ECommand Command, u32 TargetAddress, std::vector<u8>* 
 
 	if (pPayLoad)
 	{
-		payload_size = pPayLoad->size();
+		payload_size = (u32)pPayLoad->size();
 		pPayLoadData = (u8*)pPayLoad->data();
 
 		// it's important that this is less than 1K

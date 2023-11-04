@@ -82,16 +82,22 @@ static const	ImVec2 buttonSize = ImVec2(20*2,12*2);
 
 static const char* helpStrings[] = 
 {
+	"App",
 	"Connect to Target",
-	"Disconnect",
+	"Load Executable",
+	"Reload Executable",
 	"Reset Target",
+	"Refresh Rate"
 };
 
 static const int buttonXY[][2] =
 {
-	{0,17},  // connect
-	{0,14},  // disconnect
-	{4,8},   // reset
+	{0,18},  // app menu
+	{0,17},  // connect, {2,17},  // disconnect
+	{6,3},   // load executable
+	{4,8},   // reload executable
+	{0,19},  // reset
+	{2,14},  // refresh rate
 
 };
 
