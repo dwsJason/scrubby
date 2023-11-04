@@ -16,8 +16,8 @@ Toolbar* Toolbar::GToolbar = nullptr;
 
 Toolbar::Toolbar()
 	: m_GLImage(0)
-	, m_currentMode(eConnect)
-	, m_previousMode(eDisconnect)
+	, m_currentMode(-1)
+	, m_previousMode(-1)
 {
 	// So I think this should not be in a file, it should be linked in, maybe
 	// an XPM image like the eye dropper?
@@ -127,6 +127,33 @@ static int lastHovered = -1;
 			SetCurrentMode( idx );
 			ImGui::SetWindowFocus(m_focusWindow.c_str());
 		}
+
+		// I don't like this, but just make it work.
+		if (eAppMenu == idx)
+		{
+			if (ImGui::BeginPopupContextItem(0,0))
+			{
+				if (ImGui::MenuItem("Debug Memory"))
+				{
+				}
+				/*if*/ImGui::TextDisabled("Debug Code");
+				/*if*/ImGui::TextDisabled("Console Log");
+				/*if*/ImGui::TextDisabled("Manage Files");
+				/*if*/ImGui::TextDisabled("Install Program");
+				/*if*/ImGui::TextDisabled("Flash Firmware");
+
+				ImGui::EndPopup();
+			}
+			else
+			{
+				// Unpop the button
+				if (eAppMenu == m_currentMode)
+				{
+					SetCurrentMode(m_previousMode);
+				}
+			}
+		}
+
 
 		ImGui::PopID();
 
