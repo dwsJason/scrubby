@@ -18,11 +18,11 @@ public:
 	void Render();
 
 private:
-		std::string m_PortName;
-		std::string m_PortDescription;
-		std::string m_UserName;
+	std::string m_PortName;
+	std::string m_PortDescription;
+	std::string m_UserName;
 
-		FoenixDebugPort m_DebugPort;
+	FoenixDebugPort m_DebugPort;
 
 };
 
