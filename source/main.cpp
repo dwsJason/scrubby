@@ -13,7 +13,7 @@
 #include "log.h"
 #include "ImGuiFileDialog.h"
 #include "apptool.h"
-//#include "targetdoc.h"
+#include "targets.h"
 #include "dirent.h"
 #include "toolbar.h"
 
@@ -271,9 +271,9 @@ int main(int, char**)
 		// Render the Targets Window
 		if (show_targets_window)
 		{
-			ImGui::Begin("Targets", &show_targets_window);
-			//PaletteDocument::GRender();
 
+			ImGui::Begin("Targets", &show_targets_window);
+			TargetManager::GRender();
 			ImGui::End();
 
 		}
