@@ -18,6 +18,7 @@ Toolbar::Toolbar()
 	: m_GLImage(0)
 	, m_currentMode(-1)
 	, m_previousMode(-1)
+	, m_pollingRate(0)
 {
 	// So I think this should not be in a file, it should be linked in, maybe
 	// an XPM image like the eye dropper?
@@ -101,6 +102,31 @@ static const int buttonXY[][2] =
 
 };
 
+static const char* refreshStrings[] =
+{
+	"Lazy",
+	"2500ms",
+	"1000ms",
+	" 500ms",
+	" 250ms",
+	" 100ms",
+	"16.6ms",
+	"14.3ms"
+};
+
+static const float refreshRates[] =
+{
+	0.0f,
+	2.5f,
+	1.0f,
+	0.5f,
+	0.25f,
+	0.1f,
+	1000.0f/60.0f,
+	1000.0f/70.0f
+};
+
+
 static int lastHovered = -1;
 
 	// Current Button X Position
@@ -154,6 +180,33 @@ static int lastHovered = -1;
 			}
 		}
 
+		// IMGUI is pretty dumb, but this also makes it pretty easy
+		if (eRefreshRate == idx)
+		{
+
+			if (ImGui::BeginPopupContextItem(0,0))
+			{
+				for (int popidx = 0; popidx < 8;++popidx)
+				{
+					if (ImGui::MenuItem(refreshStrings[popidx]))
+					{
+						m_pollingRate = popidx;
+					}
+				}
+
+				ImGui::EndPopup();
+			}
+			else
+			{
+				// Unpop the button
+				if (eRefreshRate == m_currentMode)
+				{
+					SetCurrentMode(m_previousMode);
+				}
+			}
+
+		}
+
 
 		ImGui::PopID();
 
@@ -166,6 +219,20 @@ static int lastHovered = -1;
 			lastHovered = idx;
 		}
 	}
+
+	// Refresh Rate
+	ImGui::SameLine(0,10);
+	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.36f, 0.416f, 0.76f, 1.00f));
+	ImGui::Text(refreshStrings[m_pollingRate]);
+	ImGui::PopStyleColor();
+
+	// Current Target
+	ImGui::SameLine(0,10);
+	// Red for no connection
+	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.2f, 0.2f, 1.00f));
+	ImGui::Text("<No Target>");
+	ImGui::PopStyleColor();
+
 }
 
 //------------------------------------------------------------------------------

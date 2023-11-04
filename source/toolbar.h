@@ -34,6 +34,9 @@ public:
 	int  GetPreviousMode() { return m_previousMode; }
 	void SetPreviousMode() { SetCurrentMode(m_previousMode); }
 
+	void SetPollingRate(int rate) { m_pollingRate = rate; }
+	int GetPollingRate() { return m_pollingRate; }
+
 	void SetFocusWindow(const char* pFocusID);
 
 	// Provide access to our bitmap buttons, so anyone who wants them
@@ -52,6 +55,8 @@ private:
 
 	int m_currentMode;
 	int m_previousMode;
+
+	int m_pollingRate;
 
 	// Some button stuff
 	ImVec2 m_uv0;
