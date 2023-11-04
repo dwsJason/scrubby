@@ -240,6 +240,7 @@
     <ClCompile Include="..\source\icon.cpp" />
     <ClCompile Include="..\source\main.cpp" />
     <ClCompile Include="..\source\sdl_helpers.cpp" />
+    <ClCompile Include="..\source\targets.cpp" />
     <ClCompile Include="..\source\theme.cpp" />
     <ClCompile Include="..\source\toolbar.cpp" />
   </ItemGroup>
@@ -367,6 +368,7 @@
     <ClInclude Include="..\source\memory_editor.h" />
     <ClInclude Include="..\source\scrubby.h" />
     <ClInclude Include="..\source\sdl_helpers.h" />
+    <ClInclude Include="..\source\targets.h" />
     <ClInclude Include="..\source\toolbar.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

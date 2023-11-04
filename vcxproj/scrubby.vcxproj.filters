@@ -50,6 +50,9 @@
     <ClCompile Include="..\source\foenix.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\targets.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\common\concurrent_queue.h">
@@ -425,6 +428,9 @@
       <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="..\source\apptool.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\targets.h">
       <Filter>source</Filter>
     </ClInclude>
   </ItemGroup>

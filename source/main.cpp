@@ -273,7 +273,7 @@ int main(int, char**)
 		{
 
 			ImGui::Begin("Targets", &show_targets_window);
-			TargetManager::GRender();
+			//TargetManager::GRender();
 			ImGui::End();
 
 		}
