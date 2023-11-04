@@ -213,9 +213,9 @@ int main(int, char**)
 
 	LOG("Scrubby Compiled %s %s\n", __DATE__, __TIME__);
 
-	static FoenixDebugPort Foenix;
 
-	Foenix.OpenSerialPort("COM3");
+	static FoenixDebugPort Foenix;
+	//Foenix.OpenSerialPort("COM3");
 
 	// Get that toolbar created
 

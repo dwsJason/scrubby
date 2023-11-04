@@ -9,8 +9,16 @@
 #include <vector>
 
 
+class Target
+{
+public:
+
+};
+
+
 class TargetManager
 {
+public:
 
 };
 

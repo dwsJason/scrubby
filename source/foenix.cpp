@@ -14,6 +14,28 @@ FoenixDebugPort::FoenixDebugPort()
 	, pSCC(nullptr)
 {
 
+	struct sp_port** port_list;
+
+	sp_return result = sp_list_ports(&port_list);
+
+	if (SP_OK == result)
+	{
+		for (int idx=0;true;++idx)
+		{
+			if (port_list[idx])
+			{
+				char* portName = sp_get_port_name(port_list[idx]);
+				char* portDesc = sp_get_port_description(port_list[idx]);
+				LOG("%s - %s\n", portName, portDesc);
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		sp_free_port_list(port_list);
+	}
 }
 
 FoenixDebugPort::~FoenixDebugPort()
