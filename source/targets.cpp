@@ -5,6 +5,19 @@
 #include "targets.h"
 #include "toolbar.h"
 
+#include "foenix.h"
+
+// Target Class ---------------------------------------------------------------
+
+void Target::Render()
+{
+
+
+
+}
+
+
+// TargetManager --------------------------------------------------------------
 
 void TargetManager::Render()
 {
@@ -27,10 +40,11 @@ void TargetManager::Render()
 		ImGui::EndTooltip();
 	}
 
-	ImGui::SameLine(xPos+=40.0f);
 
 
 	// Default Target ---------------------------------------------------------
+	ImGui::SameLine(xPos+=40.0f);
+
 	if (toolBar->ImageButton(4,7))  //(6,6))
 	{
 	}
@@ -42,9 +56,10 @@ void TargetManager::Render()
 		ImGui::EndTooltip();
 	}
 
-	ImGui::SameLine(xPos+=40.0f);
 
 	// Delete Target ----------------------------------------------------------
+	ImGui::SameLine(xPos+=40.0f);
+
 	if (toolBar->ImageButton(4,0))
 	{
 	}
@@ -56,8 +71,14 @@ void TargetManager::Render()
 		ImGui::EndTooltip();
 	}
 
-	ImGui::SameLine(xPos+=40.0f);
 
+	// Render the Targets
+
+	for (int target_no = 0; target_no < m_targets.size(); ++target_no)
+	{
+		m_targets[target_no]->Render();
+	}
 
 }
 
+//-----------------------------------------------------------------------------
