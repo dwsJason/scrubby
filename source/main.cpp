@@ -69,13 +69,16 @@ static int alphaSort(const struct dirent **a, const struct dirent **b)
 	return strcoll((*a)->d_name, (*b)->d_name);
 }
 //------------------------------------------------------------------------------
+// Global Application State
 
 Toolbar* pToolbar = nullptr; // need to create after stuff intialize
 
 bool bAppDone = false; // Set true to quit App
 
 	bool show_log_window = true;
-	bool show_palette_window = true;
+	bool show_target_window = true;
+	bool is_gold_theme = true;
+	bool is_photoshop_theme = false;
 
 //------------------------------------------------------------------------------
 
@@ -289,7 +292,7 @@ int main(int, char**)
 			// pull data from the Jr
 			std::vector<u8> payload(HighAddress-LowAddress+1);
 			Foenix.Send(CMD_CPU_STOP);
-			Foenix.Send(CMD_READ_MEM, LowAddress, &payload);
+			Foenix.Send(CMD_READ_MEM, (u32)LowAddress, &payload);
 			Foenix.Send(CMD_CPU_RESUME);
 			memcpy(&data[LowAddress], payload.data(), payload.size());
 		}
@@ -466,19 +469,19 @@ void MainMenuBarUI()
 			// which we can't undo at the moment without finer window depth/z control.
 			//ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
 
-			if (ImGui::MenuItem("Open Image"))
-			{
-				// Open File
-				ImGuiFileDialog::Instance()->OpenDialog("OpenImageDlgKey", "Open Image", "\0", ".", "", 0);
-			}
-
-			if (ImGui::MenuItem("Open Palette"))
-			{
-				ImGuiFileDialog::Instance()->OpenDialog("OpenPaletteDlgKey", "Open Palette", "\0", ".", "", 0);
-			}
-
-			ImGui::Separator();
-			ImGui::Separator();
+//			if (ImGui::MenuItem("Open Image"))
+//			{
+//				// Open File
+//				ImGuiFileDialog::Instance()->OpenDialog("OpenImageDlgKey", "Open Image", "\0", ".", "", 0);
+//			}
+//
+//			if (ImGui::MenuItem("Open Palette"))
+//			{
+//				ImGuiFileDialog::Instance()->OpenDialog("OpenPaletteDlgKey", "Open Palette", "\0", ".", "", 0);
+//			}
+//
+//			ImGui::Separator();
+//			ImGui::Separator();
 			#if 0 // Show them disabled, until I implement them
 			if (ImGui::MenuItem("Save"))
 			{
@@ -502,6 +505,25 @@ void MainMenuBarUI()
 			ImGui::EndMenu();
 		}
 
+		if (ImGui::BeginMenu("Theme"))
+		{
+			if (ImGui::MenuItem("Gold", nullptr, &is_gold_theme))
+			{
+				is_gold_theme = true;
+				is_photoshop_theme = false;
+				Gold_SetupImGuiStyle();
+			}
+
+			if (ImGui::MenuItem("PhotoShop", nullptr, &is_photoshop_theme))
+			{
+				is_photoshop_theme = true;
+				is_gold_theme = false;
+				PhotoShop_SetupImGuiStyle();
+			}
+
+			ImGui::EndMenu();
+		}
+
 		if (ImGui::BeginMenu("Windows"))
 		{
 			ImGui::TextDisabled("About");
@@ -512,9 +534,9 @@ void MainMenuBarUI()
 			ImGui::Separator();
 			ImGui::Separator();
 
-			if (ImGui::MenuItem("Palettes", nullptr, show_palette_window))
+			if (ImGui::MenuItem("Targets", nullptr, show_target_window))
 			{
-				show_palette_window = !show_palette_window;
+				show_target_window = !show_target_window;
 			}
 
 			if (ImGui::MenuItem("Log", nullptr, show_log_window))
