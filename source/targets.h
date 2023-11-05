@@ -14,6 +14,11 @@
 class Target
 {
 public:
+	Target(std::string portName, std::string portDescription)
+		: m_PortName(portName)
+		, m_PortDescription(portDescription)
+	{
+	}
 
 	const std::string& GetPortName() { return m_PortName; }
 	const std::string& GetPortDescription() { return m_PortDescription; }
@@ -48,6 +53,14 @@ private:
 	int m_RadioTargetNumber;
 
 	Target* m_CurrentTarget;
+
+	// Cached List of strings for the ports
+	bool m_PortsCacheDirty;
+	std::vector<std::string> m_PortDesc;
+	std::vector<std::string> m_PortName;
+
+	FoenixDebugPort m_DebugPort;
+
 
 	std::vector<Target*> m_targets;
 

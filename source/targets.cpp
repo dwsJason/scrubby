@@ -13,22 +13,24 @@ std::string Target::GetDisplayName()
 {
 	std::string result;
 
-	if (m_UserName.empty())
+	if (!m_UserName.empty())
 	{
-		result = m_PortName + " - " + m_PortDescription;
-
-		if (3 == result.length())
-		{
-			result = "< unknown >";
-		}
+		result = m_UserName;
+	}
+	else if (!m_PortDescription.empty())
+	{
+		result = m_PortDescription;
+	}
+	else if (!m_PortName.empty())
+	{
+		result = m_PortName;
 	}
 	else
 	{
-		result = m_UserName + " on " + m_PortName;
+		result = "< unknown >";
 	}
 
 	return result;
-
 }
 
 // TargetManager --------------------------------------------------------------
@@ -36,6 +38,7 @@ std::string Target::GetDisplayName()
 TargetManager::TargetManager()
 	: m_RadioTargetNumber(0)
 	, m_CurrentTarget(nullptr)
+	, m_PortsCacheDirty(true)
 {
 }
 
@@ -64,10 +67,56 @@ void TargetManager::Render()
 	float xPos = 8.0f;
 	ImGui::SameLine(xPos);
 
+	static int buttonNumber = -1;
+
 	// Add Target -------------------------------------------------------------
 	if (toolBar->ImageButton(0,4))
 	{
-		m_targets.push_back(new Target());
+		buttonNumber = 0;
+	}
+
+	if (0 == buttonNumber)
+	{
+		if (m_PortsCacheDirty)
+		{
+			m_PortsCacheDirty = false;
+
+			m_DebugPort.ScanPorts(m_PortName, m_PortDesc);
+		}
+
+		if (m_PortName.empty())
+		{
+			if (ImGui::BeginPopupContextItem(0, 0))
+			{
+				ImGui::MenuItem("No valid ports detected");
+				ImGui::EndPopup();
+			}
+		}
+		else
+		{
+			if (ImGui::BeginPopupContextItem(0, 0))
+			{
+				for (int option_idx = 0; option_idx < m_PortName.size(); ++option_idx)
+				{
+					ImGui::PushID( option_idx );
+
+					if (ImGui::MenuItem(m_PortDesc[option_idx].c_str()))
+					{
+						m_targets.push_back(new Target(m_PortName[option_idx], m_PortDesc[option_idx]));
+					}
+
+					ImGui::PopID();
+
+				}
+
+				ImGui::EndPopup();
+			}
+		}
+
+	}
+	else
+	{
+		m_PortsCacheDirty = true;
 	}
 
 	if (ImGui::IsItemHovered())

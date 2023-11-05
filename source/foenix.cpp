@@ -13,8 +13,24 @@ FoenixDebugPort::FoenixDebugPort()
 	: BaudRate(6000000)
 	, pSCC(nullptr)
 {
+}
+
+FoenixDebugPort::~FoenixDebugPort()
+{
+
+}
+
+
+//-----------------------------------------------------------------------------
+
+void FoenixDebugPort::ScanPorts(std::vector<std::string>& nameList, std::vector<std::string>& descList)
+{
 
 	struct sp_port** port_list;
+
+	// empty the result lists
+	nameList.clear();
+	descList.clear();
 
 	sp_return result = sp_list_ports(&port_list);
 
@@ -26,7 +42,11 @@ FoenixDebugPort::FoenixDebugPort()
 			{
 				char* portName = sp_get_port_name(port_list[idx]);
 				char* portDesc = sp_get_port_description(port_list[idx]);
-				LOG("%s - %s\n", portName, portDesc);
+				//LOG("%s - %s\n", portName, portDesc);
+
+				nameList.push_back(portName);
+				descList.push_back(portDesc);
+
 			}
 			else
 			{
@@ -36,12 +56,9 @@ FoenixDebugPort::FoenixDebugPort()
 
 		sp_free_port_list(port_list);
 	}
-}
-
-FoenixDebugPort::~FoenixDebugPort()
-{
 
 }
+
 
 //-----------------------------------------------------------------------------
 

@@ -60,6 +60,8 @@ public:
 
 	u16 Send(ECommand Command, u32 TargetAddress = 0, std::vector<u8>* pPayLoad = nullptr);
 
+	void ScanPorts(std::vector<std::string>& nameList, std::vector<std::string>& descList);
+
 private:
 	std::string PortName;
 
