@@ -33,6 +33,10 @@ void MemoryTool::Render()
 	}
 	#endif
 
+	bool bIsDirty = false;
+
+
+
 	bool bIsConnected = false;
 	Target* pTarget = TargetManager::GetInstance()->GetCurrentTarget();
 
@@ -41,23 +45,27 @@ void MemoryTool::Render()
 		bIsConnected = pTarget->IsConnected();
 	}
 
-	static int rate = 60;
 
-	if ((LowAddress != m_Editor.LowAddress)||
-		(HighAddress != m_Editor.HighAddress))
+	if (bIsConnected &&
+		((LowAddress != m_Editor.LowAddress)||
+		 (HighAddress != m_Editor.HighAddress)))
 	{
 		LowAddress = m_Editor.LowAddress;
 		HighAddress = m_Editor.HighAddress;
+
 		LOG("%lx --> %lx\n", LowAddress, HighAddress);
-		rate = 0;
+
+		bIsDirty = true;
 	}
 
 
+//	static int rate = 60;
 //	rate--;
+//	if (rate <= 0)
+//		rate = 60;
 
-	if (rate <= 0)
+	if (bIsDirty)
 	{
-		rate = 60;
 		// pull data from the Jr
 		std::vector<u8> payload(HighAddress-LowAddress+1);
 
