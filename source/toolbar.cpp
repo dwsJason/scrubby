@@ -1,6 +1,9 @@
 //
 // Toolbar - My Dear ImGUI Toolbar Window
 //
+
+#include "scrubby.h"
+
 #include "toolbar.h"
 
 #include <SDL_image.h>
@@ -10,6 +13,7 @@
 
 // Target Manager
 #include "targets.h"
+
 
 
 //------------------------------------------------------------------------------
@@ -191,6 +195,7 @@ static int lastHovered = -1;
 			{
 				if (ImGui::MenuItem("Debug Memory"))
 				{
+					AddMemoryTool();
 				}
 				/*if*/ImGui::TextDisabled("Debug Code");
 				/*if*/ImGui::TextDisabled("Console Log");

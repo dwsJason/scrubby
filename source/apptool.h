@@ -15,10 +15,7 @@
 class ApplicationTool
 {
 public:
-	ApplicationTool::ApplicationTool(std::string windowName)
-		: m_windowName(windowName)
-		, m_bOpen(true)
-	{}
+	ApplicationTool::ApplicationTool(std::string windowName);
 
 	virtual bool IsClosed()
 	{
@@ -31,13 +28,18 @@ public:
 		// just be sure to refer to the m_bOpen, so that the window can be
 		// closed / deleted
 		ImGui::Begin(m_windowName.c_str(),&m_bOpen, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollWithMouse);
+
+
 		ImGui::End();
 	}
 
-private:
+protected:
 
 	std::string m_windowName;
 	bool m_bOpen;
+	int m_id;
+
+static int m_unique_id;
 
 };
 

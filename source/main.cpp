@@ -19,9 +19,9 @@
 
 #include "scrubby.h"
 
-#include "memory_editor.h"
-
 #include "foenix.h"
+
+#include "memtool.h"
 
 // Style
 void Gold_SetupImGuiStyle();
@@ -213,19 +213,12 @@ int main(int, char**)
 
 	LOG("Scrubby Compiled %s %s\n", __DATE__, __TIME__);
 
-
-	static FoenixDebugPort Foenix;
-	//Foenix.OpenSerialPort("COM3");
-
 	// Get that toolbar created
 
 	pToolbar = new Toolbar();
 
     // Main loop
     bAppDone = false;
-
-	const int DATA_SIZE = 512 * 1024;
-	static char data[ DATA_SIZE ];
 
     while (!bAppDone)
     {
@@ -771,3 +764,9 @@ void MainMenuBarUI()
 	}
 	#endif
 }
+//-----------------------------------------------------------------------------
+void AddMemoryTool()
+{
+	appTools.push_back(new MemoryTool());
+}
+//-----------------------------------------------------------------------------

@@ -53,6 +53,12 @@
     <ClCompile Include="..\source\targets.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\memtool.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\apptool.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\common\concurrent_queue.h">
@@ -431,6 +437,9 @@
       <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="..\source\targets.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\memtool.h">
       <Filter>source</Filter>
     </ClInclude>
   </ItemGroup>
