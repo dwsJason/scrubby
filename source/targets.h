@@ -15,7 +15,12 @@ class Target
 {
 public:
 
-	void Render();
+	const std::string& GetPortName() { return m_PortName; }
+	const std::string& GetPortDescription() { return m_PortDescription; }
+	const std::string& GetUserName() { return m_UserName; }
+
+	std::string GetDisplayName();
+
 
 private:
 
@@ -39,6 +44,8 @@ public:
 
 private:
 	TargetManager();
+
+	int m_RadioTargetNumber;
 
 	Target* m_CurrentTarget;
 

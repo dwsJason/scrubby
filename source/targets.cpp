@@ -9,16 +9,33 @@
 
 // Target Class ---------------------------------------------------------------
 
-void Target::Render()
+std::string Target::GetDisplayName()
 {
+	std::string result;
+
+	if (m_UserName.empty())
+	{
+		result = m_PortName + " - " + m_PortDescription;
+
+		if (3 == result.length())
+		{
+			result = "< unknown >";
+		}
+	}
+	else
+	{
+		result = m_UserName + " on " + m_PortName;
+	}
+
+	return result;
+
 }
-
-
 
 // TargetManager --------------------------------------------------------------
 
 TargetManager::TargetManager()
-	: m_CurrentTarget(nullptr)
+	: m_RadioTargetNumber(0)
+	, m_CurrentTarget(nullptr)
 {
 }
 
@@ -50,6 +67,7 @@ void TargetManager::Render()
 	// Add Target -------------------------------------------------------------
 	if (toolBar->ImageButton(0,4))
 	{
+		m_targets.push_back(new Target());
 	}
 
 	if (ImGui::IsItemHovered())
@@ -95,7 +113,16 @@ void TargetManager::Render()
 
 	for (int target_no = 0; target_no < m_targets.size(); ++target_no)
 	{
-		m_targets[target_no]->Render();
+		std::string description = m_targets[target_no]->GetDisplayName();
+
+		char temp[1024];
+
+		//std::string id = std::format("{}#{}", description, target_no);
+
+		sprintf(temp, "%s##%d", description.c_str(), target_no);
+
+		ImGui::RadioButton(temp, &m_RadioTargetNumber, target_no);
+
 	}
 
 }
