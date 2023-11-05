@@ -18,6 +18,7 @@ public:
 	void Render();
 
 private:
+
 	std::string m_PortName;
 	std::string m_PortDescription;
 	std::string m_UserName;
@@ -30,12 +31,14 @@ private:
 class TargetManager
 {
 public:
-
 	void Render();
 
 	Target* GetCurrentTarget();
 
+	static TargetManager* GetInstance();
+
 private:
+	TargetManager();
 
 	Target* m_CurrentTarget;
 

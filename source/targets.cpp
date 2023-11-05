@@ -11,13 +11,32 @@
 
 void Target::Render()
 {
-
-
-
 }
 
 
+
 // TargetManager --------------------------------------------------------------
+
+TargetManager::TargetManager()
+	: m_CurrentTarget(nullptr)
+{
+}
+
+// singleton thing
+TargetManager* TargetManager::GetInstance()
+{
+	static TargetManager* TM = nullptr;
+
+	// If there's no Target Manager
+	if (nullptr == TM)
+	{
+		// Create One
+		TM = new TargetManager();
+	}
+
+	return TM;
+}
+
 
 void TargetManager::Render()
 {

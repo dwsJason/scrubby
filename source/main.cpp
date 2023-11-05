@@ -83,8 +83,6 @@ bool bAppDone = false; // Set true to quit App
 	bool is_gold_theme = true;
 	bool is_photoshop_theme = false;
 
-	TargetManager GTargetManager;   // it would be more C++ like to make this a singleton
-
 //------------------------------------------------------------------------------
 
 // Main code
@@ -276,7 +274,7 @@ int main(int, char**)
 
 			ImGui::Begin("Targets", &show_targets_window);
 
-			GTargetManager.Render();
+			TargetManager::GetInstance()->Render();
 
 			ImGui::End();
 
