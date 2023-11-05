@@ -23,7 +23,9 @@ FoenixDebugPort::~FoenixDebugPort()
 
 
 //-----------------------------------------------------------------------------
-
+//
+// Return the list of active ports that libserialport can see
+//
 void FoenixDebugPort::ScanPorts(std::vector<std::string>& nameList, std::vector<std::string>& descList)
 {
 
@@ -62,7 +64,9 @@ void FoenixDebugPort::ScanPorts(std::vector<std::string>& nameList, std::vector<
 
 
 //-----------------------------------------------------------------------------
-
+//
+// Open and Connect on a Serialport
+//
 void FoenixDebugPort::OpenSerialPort(const char* portName)
 {
 	LOG("Open Serial Port %s\n", portName);
@@ -125,8 +129,9 @@ void FoenixDebugPort::CloseSerialPort()
 }
 
 //-----------------------------------------------------------------------------
-
-
+//
+// Send Debug Port Command (which can send or receive data)
+//
 u16 FoenixDebugPort::Send(ECommand Command, u32 TargetAddress, std::vector<u8>* pPayLoad)
 {
 	u16 status = 0;  // default status to zero
