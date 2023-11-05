@@ -111,6 +111,10 @@ void TargetManager::Render()
 
 				ImGui::EndPopup();
 			}
+			else
+			{
+				buttonNumber = -1;
+			}
 		}
 
 	}
