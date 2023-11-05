@@ -4,6 +4,7 @@
 
 #include "memtool.h"
 #include "targets.h"
+#include "log.h"
 
 // $$JGA TODO - Figure out how to share this with other tools
 // we want the actual "updates" between the target and this buffer
@@ -14,15 +15,64 @@ char MemoryTool::MEMORY_BUFFER[ DATA_SIZE ];
 
 void MemoryTool::Render()
 {
-	//ImGui::Begin(m_windowName.c_str(),&m_bOpen, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollWithMouse);
-	//ImGui::End();
+	#if 0
+	static size_t DataPreviewAddr = 0;
+	static size_t DataEditingAddr = 0;
 
-	// This ID is used, so that when multiple Windows have the same name
-	// IMGUI can tell them apart
-	//ImGui::PushID( m_id );
+	// What is the window start address, and size
+	if (DataPreviewAddr != mem_edit.DataPreviewAddr)
+	{
+		DataPreviewAddr = mem_edit.DataPreviewAddr;
+		LOG("DataPreviewAddr = $%llx\n", DataPreviewAddr);
+	}
+
+	if (DataEditingAddr != mem_edit.DataEditingAddr)
+	{
+		DataEditingAddr = mem_edit.DataEditingAddr;
+		LOG("DataEditingAddr = $%llx\n", DataEditingAddr);
+	}
+	#endif
+
+	bool bIsConnected = false;
+	Target* pTarget = TargetManager::GetInstance()->GetCurrentTarget();
+
+	if (nullptr != pTarget)
+	{
+		bIsConnected = pTarget->IsConnected();
+	}
+
+	static int rate = 60;
+
+	if ((LowAddress != m_Editor.LowAddress)||
+		(HighAddress != m_Editor.HighAddress))
+	{
+		LowAddress = m_Editor.LowAddress;
+		HighAddress = m_Editor.HighAddress;
+		LOG("%lx --> %lx\n", LowAddress, HighAddress);
+		rate = 0;
+	}
+
+
+//	rate--;
+
+	if (rate <= 0)
+	{
+		rate = 60;
+		// pull data from the Jr
+		std::vector<u8> payload(HighAddress-LowAddress+1);
+
+		if (bIsConnected)
+		{
+			pTarget->Send(CMD_CPU_STOP);
+			pTarget->Send(CMD_READ_MEM, (u32)LowAddress, &payload);
+			pTarget->Send(CMD_CPU_RESUME);
+		}
+
+		memcpy(&MEMORY_BUFFER[LowAddress], payload.data(), payload.size());
+	}
+
+
 	m_Editor.DrawWindow(m_windowName.c_str(), MEMORY_BUFFER, DATA_SIZE);
-	//ImGui::PopID();
-
 	m_bOpen = m_Editor.Open;
 }
 

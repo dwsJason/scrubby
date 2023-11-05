@@ -17,6 +17,9 @@ public:
 
 private:
 
+	size_t LowAddress;
+	size_t HighAddress;
+
 	MemoryEditor m_Editor;
 
 #define DATA_SIZE (1024 * 1024)

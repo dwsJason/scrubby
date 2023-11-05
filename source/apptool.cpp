@@ -21,6 +21,7 @@ ApplicationTool::ApplicationTool(std::string windowName)
 
 	sprintf(temp, "%d", m_id);
 
+	// Make IMGUI Happy, differentiate between Windows with the same name
 	m_windowName = windowName+"##"+temp;
 
 }

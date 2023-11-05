@@ -93,13 +93,12 @@ void FoenixDebugPort::OpenSerialPort(const char* portName)
 			sp_set_flowcontrol(pSCC, SP_FLOWCONTROL_NONE);
 
 
-//			Send(CMD_ENTER_DEBUG);
+			m_bIsOpen = true;
+
 			u16 response = Send(CMD_REVISION);
-//			Send(CMD_EXIT_DEBUG);
 
 			LOG("Revision = $%04X\n", response);
 
-			m_bIsOpen = true;
 
 		}
 		else
@@ -134,6 +133,11 @@ void FoenixDebugPort::CloseSerialPort()
 //
 u16 FoenixDebugPort::Send(ECommand Command, u32 TargetAddress, std::vector<u8>* pPayLoad)
 {
+	if (!m_bIsOpen)
+	{
+		return 0;
+	}
+
 	u16 status = 0;  // default status to zero
 	u8 lrc = 0; 	 // xor crc
 	u32 payload_size = 0;

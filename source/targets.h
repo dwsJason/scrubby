@@ -35,6 +35,16 @@ public:
 
 	void Disconnect() { m_DebugPort.CloseSerialPort(); }
 
+	u16 Target::Send(ECommand Command, u32 TargetAddress = 0, std::vector<u8>* pPayLoad = nullptr)
+	{
+		if (IsConnected())
+		{
+			return m_DebugPort.Send(Command, TargetAddress, pPayLoad);
+		}
+
+		return 0;
+	}
+
 	const std::string& GetPortName() { return m_PortName; }
 	const std::string& GetPortDescription() { return m_PortDescription; }
 	const std::string& GetUserName() { return m_UserName; }
