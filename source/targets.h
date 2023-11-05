@@ -20,6 +20,21 @@ public:
 	{
 	}
 
+	bool IsConnected() { return m_DebugPort.IsConnected(); }
+
+	bool Connect()
+	{
+		if (!m_DebugPort.IsConnected())
+		{
+			Disconnect();
+			m_DebugPort.OpenSerialPort(m_PortName.c_str());
+		}
+
+		return IsConnected();
+	}
+
+	void Disconnect() { m_DebugPort.CloseSerialPort(); }
+
 	const std::string& GetPortName() { return m_PortName; }
 	const std::string& GetPortDescription() { return m_PortDescription; }
 	const std::string& GetUserName() { return m_UserName; }
@@ -43,7 +58,7 @@ class TargetManager
 public:
 	void Render();
 
-	Target* GetCurrentTarget();
+	Target* GetCurrentTarget() { return m_CurrentTarget; }
 
 	static TargetManager* GetInstance();
 

@@ -57,6 +57,9 @@ public:
 	~FoenixDebugPort();
 	//-------------------------------------------------------------------------
 	void OpenSerialPort(const char* portName);
+	void CloseSerialPort();
+
+	bool IsConnected() { return m_bIsOpen; }
 
 	u16 Send(ECommand Command, u32 TargetAddress = 0, std::vector<u8>* pPayLoad = nullptr);
 
@@ -66,6 +69,8 @@ private:
 	std::string PortName;
 
 	int BaudRate;  // how fast is the port
+
+	bool m_bIsOpen;
 
 	struct sp_port* pSCC;  // libserialport port interface
 

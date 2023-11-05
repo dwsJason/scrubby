@@ -8,6 +8,9 @@
 
 #include "sdl_helpers.h"
 
+// Target Manager
+#include "targets.h"
+
 
 //------------------------------------------------------------------------------
 Toolbar* Toolbar::GToolbar = nullptr;
@@ -81,17 +84,20 @@ static ImVec4 bg_color = ImVec4(0,0,0,0);
 static ImVec4 tint_color = ImVec4(1,1,1,1);
 static const	ImVec2 buttonSize = ImVec2(20*2,12*2);
 
-static const char* helpStrings[] = 
+static char str_connect[]    = "Connect to Target";
+static char str_disconnect[] = "Disconnect from Target";
+
+static char* helpStrings[] = 
 {
 	"App",
-	"Connect to Target",
+	str_connect,
 	"Load Executable",
 	"Reload Executable",
 	"Reset Target",
 	"Refresh Rate"
 };
 
-static const int buttonXY[][2] =
+static int buttonXY[][2] =
 {
 	{0,18},  // app menu
 	{0,17},  // connect, {2,17},  // disconnect
@@ -125,6 +131,30 @@ static const float refreshRates[] =
 	1000.0f/60.0f,
 	1000.0f/70.0f
 };
+
+// Special Sauce for the connect/disconnect button
+//-----------------------------------------------------------------------------
+	bool bIsConnected = false;
+	Target* pTarget = TargetManager::GetInstance()->GetCurrentTarget();
+
+	if (nullptr != pTarget)
+	{
+		bIsConnected = pTarget->IsConnected();
+	}
+
+	if (bIsConnected)
+	{
+		helpStrings[eConnect] = str_disconnect; // Hover text
+		buttonXY[eConnect][0] = 2;				// Icon we show people
+		buttonXY[eConnect][1] = 17;
+	}
+	else
+	{
+		helpStrings[ eConnect ] = str_connect;  // Hover text
+		buttonXY[eConnect][0] = 0;				// Icon we show people
+		buttonXY[eConnect][1] = 17;
+	}
+//-----------------------------------------------------------------------------
 
 
 static int lastHovered = -1;
@@ -229,9 +259,50 @@ static int lastHovered = -1;
 	// Current Target
 	ImGui::SameLine(0,10);
 	// Red for no connection
-	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.2f, 0.2f, 1.00f));
-	ImGui::Text("<No Target>");
+	static ImVec4 redColor   = ImVec4(1.0f, 0.2f, 0.2f, 1.0f);
+	static ImVec4 greenColor = ImVec4(0.2f, 1.0f, 0.2f, 1.0f);
+
+	ImGui::PushStyleColor(ImGuiCol_Text, bIsConnected ? greenColor : redColor);
+
+	if (nullptr != pTarget)
+	{
+		ImGui::Text(pTarget->GetDisplayName().c_str());
+	}
+	else
+	{
+		ImGui::Text("<No Target>");
+	}
+
 	ImGui::PopStyleColor();
+
+
+	if (eConnect == GetCurrentMode())
+	{
+		// Attempt Connect or disconnect
+		if (bIsConnected)
+		{
+			// Let's disconnect
+			if (nullptr != pTarget)
+			{
+				pTarget->Disconnect();
+			}
+		}
+		else
+		{
+			if (nullptr != pTarget)
+			{
+				pTarget->Connect();
+			}
+			else
+			{
+				LOG("NO DEFAULT TARGET, cannot connect.\n");
+				LOG("Please ADD a TARGET.\n");
+			}
+
+		}
+
+		SetCurrentMode(m_previousMode);
+	}
 
 }
 

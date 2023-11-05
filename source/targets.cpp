@@ -103,6 +103,12 @@ void TargetManager::Render()
 					if (ImGui::MenuItem(m_PortDesc[option_idx].c_str()))
 					{
 						m_targets.push_back(new Target(m_PortName[option_idx], m_PortDesc[option_idx]));
+
+						// it's the first Target, just set to to be the default target right now
+						if (1 == m_targets.size())
+						{
+							m_CurrentTarget = m_targets[0];
+						}
 					}
 
 					ImGui::PopID();
@@ -137,6 +143,8 @@ void TargetManager::Render()
 
 	if (toolBar->ImageButton(4,7))  //(6,6))
 	{
+		//SetDefaultTarget( m_targets[ m_RadioTargetNumber ] );
+		m_CurrentTarget = m_targets[ m_RadioTargetNumber ];
 	}
 
 	if (ImGui::IsItemHovered())
@@ -146,12 +154,37 @@ void TargetManager::Render()
 		ImGui::EndTooltip();
 	}
 
+	// Rename Target ----------------------------------------------------------
+	ImGui::SameLine(xPos+=40.0f);
+
+	if (toolBar->ImageButton(0,0))
+	{
+		// I envision injecting a text edit widget during the RadioButton
+		// render loop, for this specific object, to edit it's m_UserName
+		// (which will then automatically be displayed)
+	}
+
+	if (ImGui::IsItemHovered())
+	{
+		ImGui::BeginTooltip();
+			ImGui::Text("Set Target Name");
+		ImGui::EndTooltip();
+	}
+
+
 
 	// Delete Target ----------------------------------------------------------
 	ImGui::SameLine(xPos+=40.0f);
 
 	if (toolBar->ImageButton(4,0))
 	{
+		// Disconnect the target if it's connected, then delete the target
+		// probably the target delete code could do the disconnect
+		// to make this as simple as deleting the target
+
+		// need to set the m_CurrentTarget to nullptr, if we are deleting
+		// the current default target
+
 	}
 
 	if (ImGui::IsItemHovered())
@@ -163,18 +196,27 @@ void TargetManager::Render()
 
 
 	// Render the Targets
+	static ImVec4 regularColor = ImVec4(0.6f,0.6f,0.6f,1.0f);
+	static ImVec4 defaultColor = ImVec4(1.0f,1.0f,0.15f,1.0f);
 
 	for (int target_no = 0; target_no < m_targets.size(); ++target_no)
 	{
 		std::string description = m_targets[target_no]->GetDisplayName();
 
-		char temp[1024];
+		//char temp[1024];
+		//sprintf(temp, "%s##%d", description.c_str(), target_no);
+		//ImGui::RadioButton(temp, &m_RadioTargetNumber, target_no);
+		ImGui::PushID(target_no);
 
-		//std::string id = std::format("{}#{}", description, target_no);
+		const ImVec4& color = m_CurrentTarget == m_targets[ target_no ] ? defaultColor : regularColor;
 
-		sprintf(temp, "%s##%d", description.c_str(), target_no);
+		ImGui::PushStyleColor(ImGuiCol_Text, color);
 
-		ImGui::RadioButton(temp, &m_RadioTargetNumber, target_no);
+		ImGui::RadioButton(description.c_str(), &m_RadioTargetNumber, target_no);
+
+		ImGui::PopStyleColor();
+
+		ImGui::PopID();
 
 	}
 

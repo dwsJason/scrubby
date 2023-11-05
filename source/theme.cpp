@@ -27,7 +27,7 @@ void Gold_SetupImGuiStyle()
 	style.CellPadding = ImVec2(4.0f, 2.0f);
 	style.IndentSpacing = 12.0f;
 	style.ColumnsMinSpacing = 6.0f;
-	style.ScrollbarSize = 24.0f;  // default was 10.0
+	style.ScrollbarSize = 20.0f;  // default was 10.0
 	style.ScrollbarRounding = 6.0f;
 	style.GrabMinSize = 10.0f;
 	style.GrabRounding = 4.0f;

@@ -11,13 +11,14 @@
 
 FoenixDebugPort::FoenixDebugPort()
 	: BaudRate(6000000)
+	, m_bIsOpen(false)
 	, pSCC(nullptr)
 {
 }
 
 FoenixDebugPort::~FoenixDebugPort()
 {
-
+	CloseSerialPort();
 }
 
 
@@ -94,6 +95,8 @@ void FoenixDebugPort::OpenSerialPort(const char* portName)
 
 			LOG("Revision = $%04X\n", response);
 
+			m_bIsOpen = true;
+
 		}
 		else
 		{
@@ -102,6 +105,27 @@ void FoenixDebugPort::OpenSerialPort(const char* portName)
 
 	}
 }
+
+//-----------------------------------------------------------------------------
+
+void FoenixDebugPort::CloseSerialPort()
+{
+	if (pSCC && m_bIsOpen)
+	{
+		m_bIsOpen = false;
+
+		sp_close(pSCC);
+
+		sp_free_port(pSCC);
+
+		pSCC = nullptr;
+
+		LOG("Close Serial Port %s\n", PortName.c_str());
+	}
+}
+
+//-----------------------------------------------------------------------------
+
 
 u16 FoenixDebugPort::Send(ECommand Command, u32 TargetAddress, std::vector<u8>* pPayLoad)
 {
