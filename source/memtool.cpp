@@ -59,26 +59,30 @@ void MemoryTool::Render()
 	}
 
 
-//	static int rate = 60;
-//	rate--;
-//	if (rate <= 0)
-//		rate = 60;
+	static int rate = 60;
+	rate-=6;
+	if (rate <= 0)
+	{
+		rate = 60;
+		bIsDirty = true;
+	}
 
 	if (bIsDirty)
 	{
-		// pull data from the Jr
-		std::vector<u8> payload(HighAddress-LowAddress+1);
 
 		if (bIsConnected)
 		{
+			// pull data from the Jr
+			std::vector<u8> payload(HighAddress-LowAddress+1);
+
 			pTarget->Send(CMD_CPU_STOP);
 			pTarget->Send(CMD_READ_MEM, (u32)LowAddress, &payload);
 			pTarget->Send(CMD_CPU_RESUME);
+
+			memcpy(&MEMORY_BUFFER[LowAddress], payload.data(), payload.size());
 		}
 
-		memcpy(&MEMORY_BUFFER[LowAddress], payload.data(), payload.size());
 	}
-
 
 	m_Editor.DrawWindow(m_windowName.c_str(), MEMORY_BUFFER, DATA_SIZE);
 	m_bOpen = m_Editor.Open;
