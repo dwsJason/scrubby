@@ -11,7 +11,10 @@ class MemoryTool : public ApplicationTool
 {
 public:
 	MemoryTool::MemoryTool()
-		: ApplicationTool("Memory Editor") {}
+		: ApplicationTool("Memory Editor")
+		, LowAddress(0)
+		, HighAddress(0)
+	{}
 
 	virtual void Render() override;
 
